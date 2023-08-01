@@ -2,9 +2,9 @@
 Databases Week 2 Applied
 week2_student.sql
 
-student id:
-student name:
-last modified date:
+student id:25348914
+student name: Zecan Liu
+last modified date: 01/08/2023
 
 */
 
