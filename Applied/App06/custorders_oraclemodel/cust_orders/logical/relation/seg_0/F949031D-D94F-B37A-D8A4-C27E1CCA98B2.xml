@@ -1,0 +1,21 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="PCAT_PRODUCT" directorySegmentName="seg_0" id="F949031D-D94F-B37A-D8A4-C27E1CCA98B2">
+<createdBy>liuzecan</createdBy>
+<createdTime>2023-08-29 01:18:41 UTC</createdTime>
+<ownerDesignName>cust_orders</ownerDesignName>
+<engineerTo>
+<item key="37BCD6D1-89E3-8683-D08F-F264EA71520C" value="true"/>
+</engineerTo>
+<sourcePk>91873E5C-DFFB-6B1F-8D08-877378BF2946</sourcePk>
+<identifying>false</identifying>
+<nameOnSource>categorse</nameOnSource>
+<nameOnTarget> </nameOnTarget>
+<optionalSource>false</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>5D3664BB-BE5A-4FB9-91FD-CDF213E83D14</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>7FC417C1-6450-E2AD-BF6A-215D932523CF</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>
