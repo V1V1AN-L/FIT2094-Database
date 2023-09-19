@@ -1,0 +1,192 @@
+SQL> -- 7.2
+SQL> -- DDL for Student-Unit-Enrolment model (using ALTER TABLE)
+SQL> --
+SQL> 
+SQL> --
+SQL> -- Place DROP commands at head of schema file
+SQL> --
+SQL> 
+SQL> drop table student cascade constraints purge;
+
+Table STUDENT dropped.
+
+SQL> drop table unit cascade constraints purge;
+
+Table UNIT dropped.
+
+SQL> drop table enrolment cascade constraints purge;
+
+Table ENROLMENT dropped.
+
+SQL> 
+SQL> 
+SQL> -- Create Tables
+SQL> -- Here using both table and column constraints
+SQL> --
+SQL> 
+SQL> CREATE TABLE student (
+  2      stu_nbr     NUMBER(8) NOT NULL,
+  3      stu_lname   VARCHAR2(50) NOT NULL,
+  4      stu_fname   VARCHAR2(50) NOT NULL,
+  5      stu_dob     DATE NOT NULL
+  6  );
+
+Table STUDENT created.
+
+SQL> 
+SQL> COMMENT ON COLUMN student.stu_nbr IS
+  2      'Student number';
+
+Comment created.
+
+SQL> 
+SQL> COMMENT ON COLUMN student.stu_lname IS
+  2      'Student last name';
+
+Comment created.
+
+SQL> 
+SQL> COMMENT ON COLUMN student.stu_fname IS
+  2      'Student first name';
+
+Comment created.
+
+SQL> 
+SQL> COMMENT ON COLUMN student.stu_dob IS
+  2      'Student date of birth';
+
+Comment created.
+
+SQL> 
+SQL> /* Add STUDENT constraints here */
+SQL> 
+SQL> ALTER TABLE student ADD CONSTRAINT student_pk PRIMARY KEY ( stu_nbr );
+
+Table STUDENT altered.
+
+SQL> 
+SQL> -- Condition (a): stu_nbr > 10000000
+SQL> ALTER TABLE student
+  2  ADD CONSTRAINT check_stu_nbr
+  3  CHECK (stu_nbr > 10000000);
+
+Table STUDENT altered.
+
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> /* Add UNIT data types here */
+SQL> CREATE TABLE unit (
+  2      unit_code  CHAR(7) NOT NULL,
+  3      unit_name  VARCHAR2(50) NOT NULL 
+  4  );
+
+Table UNIT created.
+
+SQL> 
+SQL> COMMENT ON COLUMN unit.unit_code IS
+  2      'Unit code';
+
+Comment created.
+
+SQL> 
+SQL> COMMENT ON COLUMN unit.unit_name IS
+  2      'Unit name';
+
+Comment created.
+
+SQL> 
+SQL> /* Add UNIT constraints here */
+SQL> -- Condition (b): unit_name is unique in the UNIT table
+SQL> ALTER TABLE unit
+  2  ADD CONSTRAINT unique_unit_name
+  3  UNIQUE (unit_name);
+
+Table UNIT altered.
+
+SQL> 
+SQL> 
+SQL> /* Add ENROLMENT attributes and data types here */
+SQL> CREATE TABLE enrolment (
+  2      stu_nbr         NUMBER(8)   NOT NULL,
+  3      unit_code       CHAR(7)     NOT NULL,
+  4      enrol_year      NUMBER(4)   NOT NULL ,
+  5      enrol_semester  CHAR(1)     NOT NULL,
+  6      enrol_mark      NUMBER(3),
+  7      enrol_grade     CHAR(2)
+  8      
+  9  );
+
+Table ENROLMENT created.
+
+SQL> 
+SQL> COMMENT ON COLUMN enrolment.stu_nbr IS
+  2      'Student number';
+
+Comment created.
+
+SQL> 
+SQL> COMMENT ON COLUMN enrolment.unit_code IS
+  2      'Unit code';
+
+Comment created.
+
+SQL> 
+SQL> COMMENT ON COLUMN enrolment.enrol_year IS
+  2      'Enrolment year';
+
+Comment created.
+
+SQL> 
+SQL> COMMENT ON COLUMN enrolment.enrol_semester IS
+  2      'Enrolment semester';
+
+Comment created.
+
+SQL> 
+SQL> COMMENT ON COLUMN enrolment.enrol_mark IS
+  2      'Enrolment mark (real)';
+
+Comment created.
+
+SQL> 
+SQL> COMMENT ON COLUMN enrolment.enrol_grade IS
+  2      'Enrolment grade (letter)';
+
+Comment created.
+
+SQL> 
+SQL> /* Add ENROLMENT constraints here */
+SQL> -- Condition (c): enrol_semester can only contain the value of 1 or 2 or 3
+SQL> alter table enrolment add constraint enrolment_pk primary key (stu_nbr, unit_code, enrol_year, enrol_semester);
+
+Table ENROLMENT altered.
+
+SQL> alter table enrolment add constraint student_fk foreign key (stu_nbr) REFERENCES student (stu_nbr);
+
+Table ENROLMENT altered.
+
+SQL> 
+SQL> ALTER TABLE enrolment
+  2  ADD CONSTRAINT check_enrol_semester
+  3  CHECK (enrol_semester IN (1, 2, 3));
+
+Table ENROLMENT altered.
+
+SQL> 
+SQL> DROP TABLE AGENT,CUSTOMER
+  2  
+  3  spool off
+  4  set echo off
+
+Error starting at line : 115 in command -
+DROP TABLE AGENT,CUSTOMER
+
+spool off
+set echo off
+Error report -
+ORA-00933: SQL command not properly ended
+00933. 00000 -  "SQL command not properly ended"
+*Cause:    
+*Action:

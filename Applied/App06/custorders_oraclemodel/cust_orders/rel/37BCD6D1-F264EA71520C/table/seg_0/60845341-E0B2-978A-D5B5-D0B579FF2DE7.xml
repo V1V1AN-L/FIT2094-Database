@@ -1,0 +1,51 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="60845341-E0B2-978A-D5B5-D0B579FF2DE7" name="PROD_CATE">
+<createdBy>liuzecan</createdBy>
+<createdTime>2023-08-29 01:25:04 UTC</createdTime>
+<generatorID>5D3664BB-BE5A-4FB9-91FD-CDF213E83D14</generatorID>
+<ownerDesignName>cust_orders</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="PCAT_ID" id="192F4A3F-2D31-A4AE-42E5-1E06670BD12C">
+<createdBy>liuzecan</createdBy>
+<createdTime>2023-08-29 01:25:04 UTC</createdTime>
+<generatorID>A0F452FE-EE89-0080-FE2B-1EDE5CFD6DA2</generatorID>
+<ownerDesignName>cust_orders</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>7</dataTypePrecision>
+<ownDataTypeParameters>,7,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="cate_name" id="3A7BBAC8-2F4B-5445-91B7-C6EB48430314">
+<createdBy>liuzecan</createdBy>
+<createdTime>2023-08-29 01:25:04 UTC</createdTime>
+<commentInRDBMS><![CDATA[category name]]></commentInRDBMS>
+<generatorID>EACF309D-AE17-3A36-E1B4-147CA0239CE4</generatorID>
+<ownerDesignName>cust_orders</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="BCDA322B-3120-357A-5928-795F5A063A1B" name="PROD_CATE_PK">
+<createdBy>liuzecan</createdBy>
+<createdTime>2023-08-29 01:25:04 UTC</createdTime>
+<generatorID>91873E5C-DFFB-6B1F-8D08-877378BF2946</generatorID>
+<ownerDesignName>cust_orders</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="192F4A3F-2D31-A4AE-42E5-1E06670BD12C"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

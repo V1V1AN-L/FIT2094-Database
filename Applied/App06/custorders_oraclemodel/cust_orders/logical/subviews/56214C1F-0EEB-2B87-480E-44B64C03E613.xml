@@ -11,8 +11,8 @@
 <gridEnabled>false</gridEnabled>
 <showGrid>false</showGrid>
 <diagramColor>-1</diagramColor>
-<legendPosX>0</legendPosX>
-<legendPosY>229</legendPosY>
+<legendPosX>519</legendPosX>
+<legendPosY>163</legendPosY>
 <display>false</display>
 <notation>2</notation>
 <showAllDetails>false</showAllDetails>
@@ -40,7 +40,7 @@
 </OView>
 <OView class="oracle.dbtools.crest.swingui.TVLegend" oid="D6CB76A4-BA97-E38B-7904-69A1318F3FAA" otype="Legend" vid="D3AD7467-EFF7-61CF-9898-EEA9C91223A8">
 <hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
-<bounds x="0" y="229" width="226" height="128"/>
+<bounds x="519" y="163" width="226" height="128"/>
 </OView>
 </objectViews>
 <connectors>
