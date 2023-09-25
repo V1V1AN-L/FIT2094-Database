@@ -1,10 +1,10 @@
 --*****PLEASE ENTER YOUR DETAILS BELOW*****
 --T3-mns-dm.sql
 
---Student ID:
---Student Name:
---Unit Code:
---Applied Class No:
+--Student ID: 25348914
+--Student Name: Zecan Liu
+--Unit Code: FIT2094
+--Applied Class No: A04
 
 /* Comments for your marker:
 

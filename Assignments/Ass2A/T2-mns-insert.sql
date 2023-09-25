@@ -363,3 +363,5 @@ INSERT INTO appointment VALUES (
     15,
     NULL
 );
+
+COMMIT;
