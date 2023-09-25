@@ -63,7 +63,7 @@ INSERT INTO patient VALUES (
     'Melbourne',
     'VIC',
     '3000',
-    to_date('01-Jan-2010', 'dd-Mon-yyyy'),
+    TO_DATE('01-Jan-2010', 'dd-Mon-yyyy'),
     '0478515285',
     'helloworld@gmail.com',
     1
@@ -77,7 +77,7 @@ INSERT INTO patient VALUES (
     'Sydney',
     'NSW',
     '2000',
-    to_date('25-Dec-2011','dd-Mon-yyyy'),
+    TO_DATE('25-Dec-2011', 'dd-Mon-yyyy'),
     '0458123456',
     'nihao@gmail.com',
     1
@@ -91,7 +91,7 @@ INSERT INTO patient VALUES (
     'Perth',
     'WA',
     '6000',
-    to_date('05-May-2012','dd-Mon-yyyy'),
+    TO_DATE('05-May-2012', 'dd-Mon-yyyy'),
     '0436915765',
     'xixihaha@gmail.com',
     1
@@ -105,7 +105,7 @@ INSERT INTO patient VALUES (
     'Melbourne',
     'VIC',
     '3000',
-    to_date('10-Oct-2014','dd-Mon-yyyy'),
+    TO_DATE('10-Oct-2014', 'dd-Mon-yyyy'),
     '0421369741',
     'bilibala@gmail.com',
     2
@@ -119,7 +119,7 @@ INSERT INTO patient VALUES (
     'Melbourne',
     'VIC',
     '3000',
-    to_date('08-Jan-2015', 'dd-Mon-yyyy'),
+    TO_DATE('08-Jan-2015', 'dd-Mon-yyyy'),
     '0478456129',
     'wuwulala@gmail.com',
     2
@@ -133,7 +133,7 @@ INSERT INTO patient VALUES (
     'Melbourne',
     'VIC',
     '3010',
-    to_date('01-Mar-1990', 'dd-Mon-yyyy'),
+    TO_DATE('01-Mar-1990', 'dd-Mon-yyyy'),
     '0473514829',
     'zhiyang@gmail.com',
     2
@@ -147,7 +147,7 @@ INSERT INTO patient VALUES (
     'Melbourne',
     'VIC',
     '3015',
-    to_date('31-Jan-1992', 'dd-Mon-yyyy'),
+    TO_DATE('31-Jan-1992', 'dd-Mon-yyyy'),
     '0452000111',
     'yongwu@gmail.com',
     2
@@ -161,7 +161,7 @@ INSERT INTO patient VALUES (
     'Melbourne',
     'VIC',
     '3150',
-    to_date('21-Feb-1993', 'dd-Mon-yyyy'),
+    TO_DATE('21-Feb-1993', 'dd-Mon-yyyy'),
     '0410360580',
     'gaichao@gmail.com',
     4
@@ -175,7 +175,7 @@ INSERT INTO patient VALUES (
     'Melbourne',
     'VIC',
     '3017',
-    to_date('11-May-1994', 'dd-Mon-yyyy'),
+    TO_DATE('11-May-1994', 'dd-Mon-yyyy'),
     '0410201708',
     'shenggongsun@gmail.com',
     3
@@ -189,7 +189,7 @@ INSERT INTO patient VALUES (
     'Brisbane',
     'QLD',
     '4000',
-    to_date('17-Oct-1995', 'dd-Mon-yyyy'),
+    TO_DATE('17-Oct-1995', 'dd-Mon-yyyy'),
     '0429887501',
     'ronghua@gmail.com',
     5
@@ -201,7 +201,7 @@ INSERT INTO patient VALUES (
 --------------------------------------
 INSERT INTO appointment VALUES (
     1,
-    to_date('01-May-2023 17:00', 'dd-Mon-yyyy HH24:MI'),
+    TO_DATE('01-May-2023 17:00', 'dd-Mon-yyyy HH24:MI'),
     1,
     'S',
     1,
@@ -212,7 +212,7 @@ INSERT INTO appointment VALUES (
 
 INSERT INTO appointment VALUES (
     2,
-    to_date('02-May-2023 11:00', 'dd-Mon-yyyy HH24:MI'),
+    TO_DATE('02-May-2023 11:00', 'dd-Mon-yyyy HH24:MI'),
     2,
     'T',
     2,
@@ -223,7 +223,7 @@ INSERT INTO appointment VALUES (
 
 INSERT INTO appointment VALUES (
     3,
-    to_date('03-May-2023 09:00', 'dd-Mon-yyyy HH24:MI'),
+    TO_DATE('03-May-2023 09:00', 'dd-Mon-yyyy HH24:MI'),
     3,
     'T',
     3,
@@ -234,7 +234,7 @@ INSERT INTO appointment VALUES (
 
 INSERT INTO appointment VALUES (
     4,
-    to_date('04-May-2023 16:00', 'dd-Mon-yyyy HH24:MI'),
+    TO_DATE('04-May-2023 16:00', 'dd-Mon-yyyy HH24:MI'),
     4,
     'L',
     4,
@@ -245,7 +245,7 @@ INSERT INTO appointment VALUES (
 
 INSERT INTO appointment VALUES (
     5,
-    to_date('05-May-2023 15:00', 'dd-Mon-yyyy HH24:MI'),
+    TO_DATE('05-May-2023 15:00', 'dd-Mon-yyyy HH24:MI'),
     5,
     'S',
     5,
@@ -256,7 +256,7 @@ INSERT INTO appointment VALUES (
 
 INSERT INTO appointment VALUES (
     6,
-    to_date('01-Jun-2023 10:00', 'dd-Mon-yyyy HH24:MI'),
+    TO_DATE('01-Jun-2023 10:00', 'dd-Mon-yyyy HH24:MI'),
     1,
     'S',
     6,
@@ -267,7 +267,7 @@ INSERT INTO appointment VALUES (
 
 INSERT INTO appointment VALUES (
     7,
-    to_date('02-Jun-2023 11:00', 'dd-Mon-yyyy HH24:MI'),
+    TO_DATE('02-Jun-2023 11:00', 'dd-Mon-yyyy HH24:MI'),
     2,
     'L',
     7,
@@ -278,7 +278,7 @@ INSERT INTO appointment VALUES (
 
 INSERT INTO appointment VALUES (
     8,
-    to_date('03-Jun-2023 09:00', 'dd-Mon-yyyy HH24:MI'),
+    TO_DATE('03-Jun-2023 09:00', 'dd-Mon-yyyy HH24:MI'),
     3,
     'T',
     8,
@@ -289,7 +289,7 @@ INSERT INTO appointment VALUES (
 
 INSERT INTO appointment VALUES (
     9,
-    to_date('04-Jun-2023 14:00', 'dd-Mon-yyyy HH24:MI'),
+    TO_DATE('04-Jun-2023 14:00', 'dd-Mon-yyyy HH24:MI'),
     4,
     'S',
     9,
@@ -300,7 +300,7 @@ INSERT INTO appointment VALUES (
 
 INSERT INTO appointment VALUES (
     10,
-    to_date('05-Jun-2023 15:00', 'dd-Mon-yyyy HH24:MI'),
+    TO_DATE('05-Jun-2023 15:00', 'dd-Mon-yyyy HH24:MI'),
     5,
     'L',
     10,
@@ -311,7 +311,7 @@ INSERT INTO appointment VALUES (
 
 INSERT INTO appointment VALUES (
     11,
-    to_date('01-Jul-2023 13:00', 'dd-Mon-yyyy HH24:MI'),
+    TO_DATE('01-Jul-2023 13:00', 'dd-Mon-yyyy HH24:MI'),
     1,
     'S',
     1,
@@ -322,7 +322,7 @@ INSERT INTO appointment VALUES (
 
 INSERT INTO appointment VALUES (
     12,
-    to_date('02-Jul-2023 13:00', 'dd-Mon-yyyy HH24:MI'),
+    TO_DATE('02-Jul-2023 13:00', 'dd-Mon-yyyy HH24:MI'),
     2,
     'T',
     10,
@@ -333,7 +333,7 @@ INSERT INTO appointment VALUES (
 
 INSERT INTO appointment VALUES (
     13,
-    to_date('03-Jul-2023 13:00', 'dd-Mon-yyyy HH24:MI'),
+    TO_DATE('03-Jul-2023 13:00', 'dd-Mon-yyyy HH24:MI'),
     3,
     'S',
     8,
@@ -344,7 +344,7 @@ INSERT INTO appointment VALUES (
 
 INSERT INTO appointment VALUES (
     14,
-    to_date('04-Jul-2023 13:00', 'dd-Mon-yyyy HH24:MI'),
+    TO_DATE('04-Jul-2023 13:00', 'dd-Mon-yyyy HH24:MI'),
     4,
     'L',
     2,
@@ -355,7 +355,7 @@ INSERT INTO appointment VALUES (
 
 INSERT INTO appointment VALUES (
     15,
-    to_date('04-Jul-2023 13:00', 'dd-Mon-yyyy HH24:MI'),
+    TO_DATE('04-Jul-2023 13:00', 'dd-Mon-yyyy HH24:MI'),
     5,
     'T',
     3,
@@ -363,4 +363,3 @@ INSERT INTO appointment VALUES (
     15,
     NULL
 );
-
