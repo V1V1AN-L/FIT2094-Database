@@ -31,7 +31,7 @@ SET
         WHERE
             a.patient_no = p.patient_no
     );
-
+commit;
 desc patient;
 
 

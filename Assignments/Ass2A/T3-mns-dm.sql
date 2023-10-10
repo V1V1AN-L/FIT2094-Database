@@ -1,20 +1,17 @@
---*****PLEASE ENTER YOUR DETAILS BELOW*****
---T3-mns-dm.sql
+/******PLEASE ENTER YOUR DETAILS BELOW******/
+/*T3-mns-dm.sql*/
 
---Student ID: 25348914
---Student Name: Zecan Liu
---Unit Code: FIT2094
---Applied Class No: A04
+/*Student ID: 25348914*/
+/*Student Name: Zecan Liu*/
+/*Unit Code: FIT2094*/
+/*Applied Class No: A04*/
 
 /* Comments for your marker:
 
 
-
-
 */
 
-
---3(a)
+/*3(a)*/
 DROP SEQUENCE ec_seq;
 
 DROP SEQUENCE patient_seq;
@@ -27,8 +24,7 @@ CREATE SEQUENCE patient_seq START WITH 100 INCREMENT BY 5;
 
 CREATE SEQUENCE appt_seq START WITH 100 INCREMENT BY 5;
 
-
---3(b)
+/*3(b)*/
 INSERT INTO emergency_contact VALUES (
     ec_seq.NEXTVAL,
     'Jonathan',
@@ -62,15 +58,7 @@ INSERT INTO appointment VALUES (
     TO_DATE('04-Sep-2023 15:30', 'dd-Mon-yyyy HH24:MI'),
     1,
     'S',
-    (
-        SELECT
-            patient_no
-        FROM
-            patient
-        WHERE
-                upper(patient_fname) = upper('Laura')
-            AND upper(patient_lname) = upper('Robey')
-    ),
+    patient_seq.CURRVAL,
     (
         SELECT
             provider_code
@@ -84,6 +72,8 @@ INSERT INTO appointment VALUES (
     6,
     NULL
 );
+
+COMMIT;
 
 INSERT INTO patient VALUES (
     patient_seq.NEXTVAL,
@@ -111,15 +101,7 @@ INSERT INTO appointment VALUES (
     TO_DATE('04-Sep-2023 16:00', 'dd-Mon-yyyy HH24:MI'),
     2,
     'S',
-    (
-        SELECT
-            patient_no
-        FROM
-            patient
-        WHERE
-                upper(patient_fname) = upper('Lachlan')
-            AND upper(patient_lname) = upper('Robey')
-    ),
+        patient_seq.CURRVAL,
     (
         SELECT
             provider_code
@@ -136,7 +118,7 @@ INSERT INTO appointment VALUES (
 
 COMMIT;
 
---3(c)
+/*3(c)*/
 INSERT INTO appointment VALUES (
     appt_seq.NEXTVAL,
     TO_DATE('14-Sep-2023 16:00', 'dd-Mon-yyyy HH24:MI'),
@@ -195,8 +177,7 @@ INSERT INTO appointment VALUES (
 
 COMMIT;
 
-
---3(d)
+/*3(d)*/
 
 UPDATE appointment
 SET
@@ -226,8 +207,7 @@ WHERE
 
 COMMIT;
 
-
---3(e)
+/*3(e)*/
 DELETE FROM appointment
 WHERE
     appt_datetime BETWEEN TO_DATE('15-Sep-2023', 'dd-Mon-yyyy') AND TO_DATE('22-Sep-2023'
