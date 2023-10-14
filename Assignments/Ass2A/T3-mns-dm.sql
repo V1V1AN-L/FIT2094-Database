@@ -56,7 +56,16 @@ INSERT INTO patient VALUES (
 INSERT INTO appointment VALUES (
     appt_seq.NEXTVAL,
     TO_DATE('04-Sep-2023 15:30', 'dd-Mon-yyyy HH24:MI'),
-    1,
+    (
+        SELECT
+            provider_roomno
+        FROM
+            provider
+        WHERE
+                upper(provider_title) = upper('Dr')
+            AND upper(provider_fname) = upper('Bruce')
+            AND upper(provider_lname) = upper('STRIPLIN')
+    ),
     'S',
     patient_seq.CURRVAL,
     (
@@ -99,9 +108,18 @@ INSERT INTO patient VALUES (
 INSERT INTO appointment VALUES (
     appt_seq.NEXTVAL,
     TO_DATE('04-Sep-2023 16:00', 'dd-Mon-yyyy HH24:MI'),
-    2,
+    (
+        SELECT
+            provider_roomno
+        FROM
+            provider
+        WHERE
+                upper(provider_title) = upper('Dr')
+            AND upper(provider_fname) = upper('Bruce')
+            AND upper(provider_lname) = upper('STRIPLIN')
+    ),
     'S',
-        patient_seq.CURRVAL,
+    patient_seq.CURRVAL,
     (
         SELECT
             provider_code
@@ -122,16 +140,26 @@ COMMIT;
 INSERT INTO appointment VALUES (
     appt_seq.NEXTVAL,
     TO_DATE('14-Sep-2023 16:00', 'dd-Mon-yyyy HH24:MI'),
-    2,
+    (
+        SELECT
+            provider_roomno
+        FROM
+            provider
+        WHERE
+                upper(provider_title) = upper('Dr')
+            AND upper(provider_fname) = upper('Bruce')
+            AND upper(provider_lname) = upper('STRIPLIN')
+    ),
     'T',
     (
         SELECT
             patient_no
         FROM
-            patient
+                 patient p
+            NATURAL JOIN emergency_contact e
         WHERE
-                upper(patient_fname) = upper('Lachlan')
-            AND upper(patient_lname) = upper('Robey')
+                upper(p.patient_fname) = upper('Lachlan')
+            AND e.ec_phone = '0412523122'
     ),
     (
         SELECT
@@ -151,15 +179,25 @@ INSERT INTO appointment VALUES (
             appointment
         WHERE
                 appt_datetime = TO_DATE('04-Sep-2023 16:00', 'dd-Mon-yyyy HH24:MI')
-            AND appt_roomno = 2
+            AND appt_roomno = (
+                SELECT
+                    provider_roomno
+                FROM
+                    provider
+                WHERE
+                        upper(provider_title) = upper('Dr')
+                    AND upper(provider_fname) = upper('Bruce')
+                    AND upper(provider_lname) = upper('STRIPLIN')
+            )
             AND patient_no = (
                 SELECT
                     patient_no
                 FROM
-                    patient
+                         patient p
+                    NATURAL JOIN emergency_contact e
                 WHERE
-                        upper(patient_fname) = upper('Lachlan')
-                    AND upper(patient_lname) = upper('Robey')
+                        upper(p.patient_fname) = upper('Lachlan')
+                    AND e.ec_phone = '0412523122'
             )
             AND provider_code = (
                 SELECT
@@ -184,15 +222,25 @@ SET
     appt_datetime = TO_DATE('18-Sep-2023 16:00', 'dd-Mon-yyyy HH24:MI')
 WHERE
         appt_datetime = TO_DATE('14-Sep-2023 16:00', 'dd-Mon-yyyy HH24:MI')
-    AND appt_roomno = 2
+    AND appt_roomno = (
+        SELECT
+            provider_roomno
+        FROM
+            provider
+        WHERE
+                upper(provider_title) = upper('Dr')
+            AND upper(provider_fname) = upper('Bruce')
+            AND upper(provider_lname) = upper('STRIPLIN')
+    )
     AND patient_no = (
         SELECT
             patient_no
         FROM
-            patient
+                 patient p
+            NATURAL JOIN emergency_contact e
         WHERE
-                upper(patient_fname) = upper('Lachlan')
-            AND upper(patient_lname) = upper('Robey')
+                upper(p.patient_fname) = upper('Lachlan')
+            AND e.ec_phone = '0412523122'
     )
     AND provider_code = (
         SELECT
@@ -203,6 +251,44 @@ WHERE
                 upper(provider_title) = upper('Dr')
             AND upper(provider_fname) = upper('Bruce')
             AND upper(provider_lname) = upper('STRIPLIN')
+    ) and appt_prior_apptno =     (
+        SELECT
+            appt_no
+        FROM
+            appointment
+        WHERE
+                appt_datetime = TO_DATE('04-Sep-2023 16:00', 'dd-Mon-yyyy HH24:MI')
+            AND appt_roomno = (
+                SELECT
+                    provider_roomno
+                FROM
+                    provider
+                WHERE
+                        upper(provider_title) = upper('Dr')
+                    AND upper(provider_fname) = upper('Bruce')
+                    AND upper(provider_lname) = upper('STRIPLIN')
+            )
+            AND patient_no = (
+                SELECT
+                    patient_no
+                FROM
+                         patient p
+                    NATURAL JOIN emergency_contact e
+                WHERE
+                        upper(p.patient_fname) = upper('Lachlan')
+                    AND e.ec_phone = '0412523122'
+            )
+            AND provider_code = (
+                SELECT
+                    provider_code
+                FROM
+                    provider
+                WHERE
+                        upper(provider_title) = upper('Dr')
+                    AND upper(provider_fname) = upper('Bruce')
+                    AND upper(provider_lname) = upper('STRIPLIN')
+            )
+            AND appt_prior_apptno IS NULL
     );
 
 COMMIT;

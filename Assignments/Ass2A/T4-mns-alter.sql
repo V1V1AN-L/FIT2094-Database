@@ -14,12 +14,21 @@
 */
 
 --4(a)
+
 ALTER TABLE patient ADD (
     patient_appt_amount NUMBER(3, 0)
 );
 
 COMMENT ON COLUMN patient.patient_appt_amount IS
     'total number of appointments for this patient in the system';
+
+DESC patient;
+
+SELECT
+    patient_no,
+    nvl(patient_appt_amount, 0) AS "Patient Appt Amount"
+FROM
+    patient;
 
 UPDATE patient p
 SET
@@ -31,8 +40,15 @@ SET
         WHERE
             a.patient_no = p.patient_no
     );
-commit;
-desc patient;
+
+COMMIT;
+
+SELECT
+    patient_no,
+    nvl(patient_appt_amount, 0) AS "Patient Appt Amount"
+FROM
+    patient;
+
 
 
 --4(b)
