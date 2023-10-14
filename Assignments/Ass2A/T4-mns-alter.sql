@@ -1,19 +1,16 @@
---*****PLEASE ENTER YOUR DETAILS BELOW*****
---T4-mns-alter.sql
+/******PLEASE ENTER YOUR DETAILS BELOW******/
+/*T4-mns-alter.sql*/
 
---Student ID: 25348914
---Student Name: Zecan Liu
---Unit Code: FIT2094
---Applied Class No: A04
+/*Student ID: 25348914*/
+/*Student Name: Zecan Liu*/
+/*Unit Code: FIT2094*/
+/*Applied Class No: A04*/
 
 /* Comments for your marker:
 
-
-
-
 */
 
---4(a)
+/*4(a)*/
 
 ALTER TABLE patient ADD (
     patient_appt_amount NUMBER(3, 0)
@@ -49,15 +46,16 @@ SELECT
 FROM
     patient;
 
-
-
---4(b)
+/*4(b)*/
 DROP TABLE patient_ec_record CASCADE CONSTRAINTS PURGE;
 
-CREATE TABLE patient_ec_record (
-    patient_no NUMBER(4) NOT NULL,
-    ec_id      NUMBER(4) NOT NULL
-);
+CREATE TABLE patient_ec_record
+    AS
+        SELECT
+            patient_no,
+            ec_id
+        FROM
+            patient;
 
 COMMENT ON COLUMN patient_ec_record.patient_no IS
     'patient id number';
@@ -76,10 +74,14 @@ ALTER TABLE patient_ec_record
     ADD CONSTRAINT ec_pec_fk FOREIGN KEY ( ec_id )
         REFERENCES emergency_contact ( ec_id );
 
-desc patient_ec_record;
+DESC patient_ec_record;
 
+SELECT
+    *
+FROM
+    patient_ec_record;
 
---4(c)
+/*4(c)*/
 DROP TABLE training_record CASCADE CONSTRAINTS PURGE;
 
 DROP TABLE training_course CASCADE CONSTRAINTS PURGE;
@@ -139,3 +141,7 @@ ALTER TABLE training_record
 ALTER TABLE training_record
     ADD CONSTRAINT course_tr_fk FOREIGN KEY ( training_course_id )
         REFERENCES training_course ( training_course_id );
+
+DESC training_course;
+
+DESC training_record;

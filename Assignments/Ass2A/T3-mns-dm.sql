@@ -82,7 +82,6 @@ INSERT INTO appointment VALUES (
     NULL
 );
 
-COMMIT;
 
 INSERT INTO patient VALUES (
     patient_seq.NEXTVAL,
