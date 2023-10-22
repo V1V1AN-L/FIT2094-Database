@@ -197,21 +197,62 @@ ORDER BY
 -- PLEASE PLACE REQUIRED SQL SELECT STATEMENT FOR THIS PART HERE
 -- ENSURE that your query is formatted and has a semicolon
 -- (;) at the end of this answer
+
 SELECT
-    p.provider_code,
-    COUNT(a.provider_code)  AS numberappts,
-    lpad(nvl(to_char(SUM(s.apptserv_fee),
-                     '$999999.99'),
+    p.provider_code AS pcode,
+    lpad(
+        CASE
+            WHEN COUNT(a.appt_no) = 0 THEN
+                '-'
+            ELSE
+                to_char(COUNT(a.appt_no))
+        END,
+        11)        AS numberappts,
+    lpad(nvl(to_char(SUM(sum_apptserv),
+                     '$999990.00'),
              '-'),
-         12)                AS totalfees,
-    SUM(i.as_item_quantity) AS noitems
+         11)        AS totalfees,
+    lpad(nvl(to_char(SUM(sum_item),
+                     '9990'),
+             '-'),
+         7)         AS noitems
 FROM
-    mns.provider         p
-    LEFT OUTER JOIN mns.appointment      a
+    mns.provider p
+    LEFT OUTER JOIN (
+        SELECT
+            *
+        FROM
+            mns.appointment
+        WHERE
+            appt_datetime BETWEEN TO_DATE('10/09/2023 09:00', 'dd/mm/yyyy hh24:mi') AND
+            TO_DATE('14/09/2023 17:00', 'dd/mm/yyyy hh24:mi')
+    )            a
     ON p.provider_code = a.provider_code
-    LEFT OUTER JOIN mns.appt_serv        s
-    ON a.appt_no = s.appt_no
-    LEFT OUTER JOIN mns.apptservice_item i
-    ON a.appt_no = i.appt_no
+    LEFT OUTER JOIN (
+        SELECT
+            s.appt_no,
+            SUM(apptserv_fee) AS sum_apptserv
+        FROM
+                 mns.appointment
+            JOIN mns.appt_serv s
+            ON mns.appointment.appt_no = s.appt_no
+        GROUP BY
+            s.appt_no
+    )            total_apptserv
+    ON a.appt_no = total_apptserv.appt_no
+    LEFT OUTER JOIN (
+        SELECT
+            a.appt_no,
+            SUM(as_item_quantity) AS sum_item
+        FROM
+            mns.appointment      a
+            LEFT OUTER JOIN mns.apptservice_item i
+            ON a.appt_no = i.appt_no
+        GROUP BY
+            a.appt_no
+    )            total_item
+    ON a.appt_no = total_item.appt_no
 GROUP BY
+    p.provider_code
+ORDER BY
     p.provider_code;
