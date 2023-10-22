@@ -148,7 +148,7 @@ SELECT
     service_desc,
     to_char(service_stdfee, '$999990.00') AS service_standard_fee,
     to_char(AVG(a.apptserv_fee) - service_stdfee,
-            '$999990.00')                AS service_fee_differential
+            '$999990.00')                 AS service_fee_differential
 FROM
          mns.appt_serv a
     JOIN mns.service s
@@ -166,46 +166,33 @@ ORDER BY
 -- PLEASE PLACE REQUIRED SQL SELECT STATEMENT FOR THIS PART HERE
 -- ENSURE that your query is formatted and has a semicolon
 -- (;) at the end of this answer
+
 SELECT
     p.patient_no,
-    p.patient_fname
-    || ' '
-    || p.patient_lname                                 AS patientname,
-    trunc(months_between(sysdate, p.patient_dob) / 12) AS currentage,
-    nvl(ap.total_appointments, 0)                      AS numappts,
-    CASE
-        WHEN nvl(100 *(ap.followup_appointments / ap.total_appointments), 0) = 0 THEN
-            lpad('0.0%', 9)
-        ELSE
-            lpad(to_char(nvl(100 *(ap.followup_appointments / ap.total_appointments),
-            0),
-                         '999.9')
-                 || '%',
-                 9)
-    END                                                AS followups
+    TRIM(nvl(patient_fname, '')
+         || ' '
+         || nvl(patient_lname, ''))                       AS patientname,
+    trunc(months_between(sysdate, patient_dob) / 12) AS currentage,
+    COUNT(appt_no)                                   AS numappts,
+    lpad(to_char(100 *(COUNT(appt_prior_apptno) / COUNT(appt_no)),
+                 '990.0')
+         || '%',
+         9)                                          AS followups
 FROM
-    mns.patient p
-    LEFT OUTER JOIN (
-        SELECT
-            a.patient_no,
-            COUNT(*) AS total_appointments,
-            SUM(
-                CASE
-                    WHEN a.appt_prior_apptno IS NOT NULL THEN
-                        1
-                    ELSE
-                        0
-                END
-            )        AS followup_appointments
-        FROM
-            mns.appointment a
-        GROUP BY
-            a.patient_no
-    )           ap
-    ON p.patient_no = ap.patient_no;
-
-
-
+    mns.patient     p
+    LEFT OUTER JOIN mns.appointment a
+    ON p.patient_no = a.patient_no
+GROUP BY
+    p.patient_no,
+    TRIM(nvl(patient_fname, '')
+         || ' '
+         || nvl(patient_lname, '')),
+    trunc(months_between(sysdate, patient_dob) / 12)
+ORDER BY
+    p.patient_no;
+    
+    
+    
 /*2(g)*/
 -- PLEASE PLACE REQUIRED SQL SELECT STATEMENT FOR THIS PART HERE
 -- ENSURE that your query is formatted and has a semicolon
