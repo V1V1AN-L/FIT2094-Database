@@ -78,7 +78,8 @@ ORDER BY
 SELECT
     service_code,
     service_desc,
-    lpad(to_char(service_stdfee, '$999990.00'),12) AS standard_fee     
+    lpad(to_char(service_stdfee, '$999990.00'),
+         12) AS standard_fee
 FROM
     mns.service
 WHERE
@@ -102,13 +103,14 @@ ORDER BY
 
 SELECT
     a.appt_no,
-    to_char(a.appt_datetime, 'dd-Mon-yyyy') AS appt_datetime,
+    to_char(a.appt_datetime, 'dd-Mon-yyyy hh:mi:ss AM') AS appt_date_time,
     a.patient_no,
-    nvl(patient_fname, '')
-    || ' '
-    || nvl(patient_lname, '')               AS patient_fullname,
-    to_char(SUM(nvl(apptserv_fee, 0) + nvl(apptserv_itemcost, 0)),
-            '$999999.99')                   AS appt_totalcost
+    TRIM(nvl(patient_fname, '')
+         || ' '
+         || nvl(patient_lname, ''))                          AS patient_fullname,
+    lpad(to_char(SUM(nvl(apptserv_fee, 0) + nvl(apptserv_itemcost, 0)),
+                 '$999990.00'),
+         14)                                            AS appt_total_cost
 FROM
          mns.appointment a
     JOIN mns.appt_serv s
@@ -117,11 +119,11 @@ FROM
     ON a.patient_no = p.patient_no
 GROUP BY
     a.appt_no,
-    to_char(a.appt_datetime, 'dd-Mon-yyyy'),
+    to_char(a.appt_datetime, 'dd-Mon-yyyy hh:mi:ss AM'),
     a.patient_no,
-    nvl(patient_fname, '')
-    || ' '
-    || nvl(patient_lname, '')
+    TRIM(nvl(patient_fname, '')
+         || ' '
+         || nvl(patient_lname, ''))
 HAVING
     SUM(nvl(apptserv_fee, 0) + nvl(apptserv_itemcost, 0)) = (
         SELECT
@@ -132,9 +134,9 @@ HAVING
             appt_no
     )
 ORDER BY
-    appt_no;
+    a.appt_no;
 
---nvl usage??
+
 
 /*2(e)*/
 -- PLEASE PLACE REQUIRED SQL SELECT STATEMENT FOR THIS PART HERE
