@@ -78,7 +78,7 @@ ORDER BY
 SELECT
     service_code,
     service_desc,
-    to_char(service_stdfee, '$999990.99') AS service_stdfee     --999?990?
+    lpad(to_char(service_stdfee, '$999990.00'),12) AS standard_fee     
 FROM
     mns.service
 WHERE
@@ -89,7 +89,7 @@ WHERE
             mns.service
     )
 ORDER BY
-    service_stdfee DESC,
+    standard_fee DESC,
     service_code;
     
     
