@@ -41,11 +41,23 @@ ORDER BY
 
 SELECT
     provider_code,
-    nvl(provider_title, '')
-    || '.'
-    || nvl(provider_fname, '')
-    || ' '
-    || nvl(provider_lname, '') AS provider_name --name  probably needs to be changed
+    TRIM(nvl(provider_title, '') --trim remove leading and trailing blanks
+         ||
+         CASE
+             WHEN provider_title IS NOT NULL THEN
+                 '. '
+             ELSE
+                 ''
+         END
+         || nvl(provider_fname, '')
+         ||
+         CASE
+             WHEN provider_fname IS NOT NULL THEN
+                 ' '
+             ELSE
+                 ''
+         END
+         || nvl(provider_lname, '')) AS provider_name
 FROM
          mns.provider p
     JOIN mns.specialisation s
