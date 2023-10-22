@@ -110,7 +110,7 @@ SELECT
          || nvl(patient_lname, ''))                          AS patient_fullname,
     lpad(to_char(SUM(nvl(apptserv_fee, 0) + nvl(apptserv_itemcost, 0)),
                  '$999990.00'),
-         14)                                            AS appt_total_cost
+         15)                                            AS appt_total_cost
 FROM
          mns.appointment a
     JOIN mns.appt_serv s
@@ -119,7 +119,7 @@ FROM
     ON a.patient_no = p.patient_no
 GROUP BY
     a.appt_no,
-    to_char(a.appt_datetime, 'dd-Mon-yyyy hh:mi:ss AM'),
+    a.appt_datetime,
     a.patient_no,
     TRIM(nvl(patient_fname, '')
          || ' '
@@ -144,33 +144,21 @@ ORDER BY
 -- (;) at the end of this answer
 
 SELECT
-    s.service_code,
-    s.service_desc,
-    s.service_stdfee AS "standard fee",
-    CASE
-        WHEN AVG(a.apptserv_fee) - s.service_stdfee > 0 THEN
-            lpad('+'
-                 || to_char(AVG(a.apptserv_fee) - s.service_stdfee,
-                            '$999999.99'),
-                 12)
-        ELSE
-            lpad(to_char(AVG(a.apptserv_fee) - s.service_stdfee,
-                         '$999999.99'),
-                 12)
-    END              AS "differential"
+    a.service_code,
+    service_desc,
+    to_char(service_stdfee, '$999990.00') AS service_standard_fee,
+    to_char(AVG(a.apptserv_fee) - service_stdfee,
+            '$999990.00')                AS service_fee_differential
 FROM
          mns.appt_serv a
     JOIN mns.service s
     ON a.service_code = s.service_code
 GROUP BY
-    s.service_code,
-    s.service_desc,
-    s.service_stdfee
+    a.service_code,
+    service_desc,
+    service_stdfee
 ORDER BY
-    s.service_code;
-
-
---change the format later
+    a.service_code;
 
 
 
