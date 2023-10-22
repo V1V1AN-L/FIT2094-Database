@@ -31,7 +31,7 @@ WHERE
     AND upper(item_desc) LIKE upper('%composite%')
 ORDER BY
     item_stock DESC,
-    item_id; --id need desc as well?
+    item_id; 
 
 
 /*2(b)*/
