@@ -19,7 +19,7 @@
 -- ENSURE that your query is formatted and has a semicolon
 -- (;) at the end of this answer
 
-SET PAGESIZE 300
+SET PAGESIZE 200
 
 SELECT
         JSON_OBJECT(
