@@ -51,7 +51,12 @@ db.appointment.find();
 // ENSURE that your query is formatted and has a semicolon
 // (;) at the end of this answer
 
-
+db.appointment.find({
+    $or: [
+      { "item_totalcost": { $gt: 50 } },
+      { "no_of_items": { $gt: 2} }
+    ]
+  });
 
 // 3(d)
 // PLEASE PLACE REQUIRED MONGODB COMMAND/S FOR THIS PART HERE
