@@ -28,7 +28,8 @@ db.appointment.drop();
 
 
 // Create collection and insert documents
-db.appointment.insertMany([{"_id":1,"datetime":"08-Sep-2023 10:00:00 AM","provider_code":"ORS001","provider_name":"Dr. Jessica Jones","item_totalcost":80,"no_of_items":2,"items":[{"id":20,"desc":"Phospor imaging plate","standardcost":75,"quantity":1},{"id":21,"desc":"Clinasept Film","standardcost":5,"quantity":1}]},
+db.appointment.insertMany([
+{"_id":1,"datetime":"08-Sep-2023 10:00:00 AM","provider_code":"ORS001","provider_name":"Dr. Jessica Jones","item_totalcost":80,"no_of_items":2,"items":[{"id":20,"desc":"Phospor imaging plate","standardcost":75,"quantity":1},{"id":21,"desc":"Clinasept Film","standardcost":5,"quantity":1}]},
 {"_id":3,"datetime":"08-Sep-2023 12:00:00 PM","provider_code":"ORS001","provider_name":"Dr. Jessica Jones","item_totalcost":27,"no_of_items":5,"items":[{"id":1,"desc":"Paper tips","standardcost":1,"quantity":5},{"id":15,"desc":"Absorbable suture","standardcost":3,"quantity":2},{"id":8,"desc":"Irrigation Needle and Syringe","standardcost":2,"quantity":1},{"id":7,"desc":"Portalimas sponges 1 cm","standardcost":0.5,"quantity":10},{"id":4,"desc":"Irrigation Solution 2% Chlorhexidine","standardcost":9,"quantity":1}]},
 {"_id":5,"datetime":"08-Sep-2023 04:00:00 PM","provider_code":"GEN001","provider_name":"Dr. Bruce Striplin","item_totalcost":75,"no_of_items":1,"items":[{"id":20,"desc":"Phospor imaging plate","standardcost":75,"quantity":1}]},
 {"_id":7,"datetime":"08-Sep-2023 12:00:00 PM","provider_code":"GEN002","provider_name":"Dr. Amalia Morris","item_totalcost":78,"no_of_items":1,"items":[{"id":18,"desc":"Fluid composite","standardcost":78,"quantity":1}]},
@@ -58,13 +59,23 @@ db.appointment.find({
     ]
   });
 
+
 // 3(d)
 // PLEASE PLACE REQUIRED MONGODB COMMAND/S FOR THIS PART HERE
 // ENSURE that your query is formatted and has a semicolon
 // (;) at the end of this answer
 
+db.appointment.updateMany(
+  {
+    "items.id": 1
+  },
+  {
+    $set: { "items.$.desc": "Paper points" }
+  }
+);
 
 // Illustrate/confirm changes made
+db.appointment.find({ "items.id": 1 });
 
 
 // 3(e)
