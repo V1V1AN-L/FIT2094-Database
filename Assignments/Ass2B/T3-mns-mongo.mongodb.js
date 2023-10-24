@@ -78,7 +78,7 @@ db.appointment.find({ "items.id": 1 });
 // ENSURE that your query is formatted and has a semicolon
 // (;) at the end of this answer
 
-let items = [
+const newItems = [
   {
     "id": 3,
     "desc": "EDTA Cleansing Gel 17%",
@@ -99,9 +99,18 @@ let items = [
   }
 ];
 
+let addedTotalCost = 0;
+for (let item of newItems) {
+  addedTotalCost += item.standardcost * item.quantity;
+}
+
 db.appointment.updateOne(
   { "_id": 20 },
-  { $push: { "items": { $each: items } } });
+  {
+    $push: { "items": { $each: newItems } },
+    $inc: { "no_of_items": newItems.length, "item_totalcost": addedTotalCost }
+  }
+);
 
 
 // Illustrate/confirm changes made
