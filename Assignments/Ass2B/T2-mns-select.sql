@@ -41,7 +41,7 @@ ORDER BY
 
 SELECT
     provider_code,
-    TRIM(nvl(provider_title, '') --trim remove leading and trailing blanks
+    TRIM(nvl(provider_title, '') 
          ||
          CASE
              WHEN provider_title IS NOT NULL THEN
