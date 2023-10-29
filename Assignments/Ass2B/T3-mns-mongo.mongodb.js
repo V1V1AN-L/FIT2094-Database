@@ -53,9 +53,9 @@ db.appointment.find();
 // (;) at the end of this answer
 
 db.appointment.find({
-  $or: [
-    { "item_totalcost": { $gt: 50 } },
-    { "no_of_items": { $gt: 2 } }
+  "$or": [
+    { "item_totalcost": { "$gt": 50 } },
+    { "no_of_items": { "$gt": 2 } }
   ]
 });
 
@@ -67,7 +67,7 @@ db.appointment.find({
 
 db.appointment.updateMany(
   { "items.id": 1 },
-  { $set: { "items.$.desc": "Paper points" } });
+  { "$set": { "items.$.desc": "Paper points" } });
 
 // Illustrate/confirm changes made
 db.appointment.find({ "items.id": 1 });
@@ -107,8 +107,8 @@ for (let item of newItems) {
 db.appointment.updateOne(
   { "_id": 20 },
   {
-    $push: { "items": { $each: newItems } },
-    $inc: { "no_of_items": newItems.length, "item_totalcost": addedTotalCost }
+    "$push": { "items": { "$each": newItems } },
+    "$inc": { "no_of_items": newItems.length, "item_totalcost": addedTotalCost }
   }
 );
 
